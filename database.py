@@ -5,20 +5,23 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 load_dotenv()
 
+# =========================================================
+# DATABASE CONNECTION
+# =========================================================
+
 def get_connection():
+
     database_url = os.getenv("DATABASE_URL")
 
     if not database_url:
-        raise Exception(
-            "DATABASE_URL is not configured."
-        )
+        raise Exception("DATABASE_URL is not configured.")
 
     return psycopg2.connect(database_url)
 
 
-# ---------------------------------------------------------
+# =========================================================
 # TEAMS
-# ---------------------------------------------------------
+# =========================================================
 
 def get_teams():
 
@@ -42,9 +45,9 @@ def get_teams():
     return teams
 
 
-# ---------------------------------------------------------
+# =========================================================
 # OBJECTIVES
-# ---------------------------------------------------------
+# =========================================================
 
 def get_objectives(team=None):
 
@@ -127,8 +130,14 @@ def create_objective(
             next_objective
         )
         VALUES (
-            %s, %s, %s, %s, %s,
-            0, 'Not Started', %s
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            0,
+            'Not Started',
+            %s
         )
     """, (
         team_id,
@@ -144,6 +153,98 @@ def create_objective(
     cursor.close()
     conn.close()
 
+
+# =========================================================
+# EDIT OBJECTIVE
+# =========================================================
+
+def edit_objective(
+    objective_id,
+    team,
+    objective,
+    description,
+    owner,
+    target_date,
+    progress,
+    status,
+    next_objective
+):
+
+    conn = get_connection()
+
+    cursor = conn.cursor()
+
+    # Find team ID
+    cursor.execute("""
+        SELECT id
+        FROM teams
+        WHERE name = %s
+    """, (team,))
+
+    team_record = cursor.fetchone()
+
+    if not team_record:
+        cursor.close()
+        conn.close()
+        raise Exception("Team not found.")
+
+    team_id = team_record[0]
+
+    # Update complete objective
+    cursor.execute("""
+        UPDATE objectives
+        SET
+            team_id = %s,
+            objective = %s,
+            description = %s,
+            owner = %s,
+            target_date = %s,
+            progress = %s,
+            status = %s,
+            next_objective = %s
+        WHERE id = %s
+    """, (
+        team_id,
+        objective,
+        description,
+        owner,
+        target_date,
+        progress,
+        status,
+        next_objective,
+        objective_id
+    ))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+
+# =========================================================
+# DELETE OBJECTIVE
+# =========================================================
+
+def delete_objective(objective_id):
+
+    conn = get_connection()
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        DELETE FROM objectives
+        WHERE id = %s
+    """, (objective_id,))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+
+# =========================================================
+# SIMPLE PROGRESS UPDATE
+# =========================================================
 
 def update_objective(
     objective_id,
@@ -176,9 +277,9 @@ def update_objective(
     conn.close()
 
 
-# ---------------------------------------------------------
+# =========================================================
 # MEETINGS
-# ---------------------------------------------------------
+# =========================================================
 
 def create_meeting(
     team,
@@ -203,6 +304,8 @@ def create_meeting(
     team_record = cursor.fetchone()
 
     if not team_record:
+        cursor.close()
+        conn.close()
         raise Exception("Team not found.")
 
     team_id = team_record[0]
@@ -218,7 +321,13 @@ def create_meeting(
             next_steps
         )
         VALUES (
-            %s, %s, %s, %s, %s, %s, %s
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s
         )
     """, (
         team_id,
@@ -277,9 +386,9 @@ def get_meetings(team=None):
     return meetings
 
 
-# ---------------------------------------------------------
-# PROGRESS UPDATES
-# ---------------------------------------------------------
+# =========================================================
+# PROGRESS HISTORY
+# =========================================================
 
 def create_progress_update(
     objective_id,
@@ -304,11 +413,12 @@ def create_progress_update(
     team_record = cursor.fetchone()
 
     if not team_record:
+        cursor.close()
+        conn.close()
         raise Exception("Team not found.")
 
     team_id = team_record[0]
 
-    # Save progress history
     cursor.execute("""
         INSERT INTO progress_updates (
             objective_id,
@@ -320,7 +430,13 @@ def create_progress_update(
             next_step
         )
         VALUES (
-            %s, %s, %s, %s, %s, %s, %s
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s,
+            %s
         )
     """, (
         objective_id,
@@ -332,7 +448,6 @@ def create_progress_update(
         next_step
     ))
 
-    # Determine status automatically
     if progress == 100:
         status = "Completed"
 
@@ -345,7 +460,6 @@ def create_progress_update(
     else:
         status = "Not Started"
 
-    # Update objective
     cursor.execute("""
         UPDATE objectives
         SET
