@@ -373,10 +373,10 @@ elif page == "Objectives":
                     key=f"edit_team_{obj['id']}"
                 )
 
-                edit_objective = st.text_input(
+                edited_objective_name = st.text_input(
                     "Objective",
-                    value=obj["objective"],
-                    key=f"edit_objective_{obj['id']}"
+                 value=obj["objective"],
+                 key=f"edit_objective_{obj['id']}"
                 )
 
                 edit_description = st.text_area(
@@ -446,7 +446,7 @@ elif page == "Objectives":
                     edit_objective(
                         obj["id"],
                         edit_team,
-                        edit_objective,
+                        edited_objective_name,
                         edit_description,
                         edit_owner,
                         edit_target_date,
