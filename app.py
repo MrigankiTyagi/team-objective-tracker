@@ -30,97 +30,218 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-html, body, [class*="css"] {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Main background */
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 .stApp {
-    background-color: #f5f5f5;
+    background-color: #f1f2f3;
+    color: #202124;
 }
 
-/* Sidebar */
+html, body, [class*="css"] {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #202124;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 section[data-testid="stSidebar"] {
-    background:
-        linear-gradient(
-            180deg,
-            #1f1f1f 0%,
-            #363636 45%,
-            #666666 100%
-        );
+    background: linear-gradient(
+        180deg,
+        #202124 0%,
+        #383a3d 50%,
+        #696c70 100%
+    );
 }
 
 section[data-testid="stSidebar"] * {
-    color: white !important;
+    color: #ffffff !important;
 }
 
-/* Sidebar title */
-
-section[data-testid="stSidebar"] h1 {
-    font-size: 24px;
-    font-weight: 600;
+section[data-testid="stSidebar"] label {
+    color: #ffffff !important;
 }
 
-/* Main titles */
 
-h1 {
-    color: #222222;
-    font-weight: 600;
+/* =====================================================
+   HEADINGS
+===================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #202124 !important;
 }
 
-h2 {
-    color: #303030;
+.stMarkdown p {
+    color: #303134;
 }
 
-h3 {
-    color: #404040;
-}
 
-/* Cards */
+/* =====================================================
+   METRIC CARDS
+===================================================== */
 
 div[data-testid="stMetric"] {
-    background: white;
-    padding: 18px;
-    border-radius: 10px;
-    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    border: 1px solid #d0d2d4;
+    border-radius: 12px;
+    padding: 20px;
 }
 
-/* Buttons */
+div[data-testid="stMetric"] label {
+    color: #55585c !important;
+}
+
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    color: #202124 !important;
+}
+
+div[data-testid="stMetric"] div[data-testid="stMetricDelta"] {
+    color: #444444 !important;
+}
+
+
+/* =====================================================
+   CONTAINERS / CARDS
+===================================================== */
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff;
+    border: 1px solid #d5d7da;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
+/* =====================================================
+   INPUT BOXES
+===================================================== */
+
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input {
+    background-color: #ffffff !important;
+    color: #202124 !important;
+    border: 1px solid #b9bcc0 !important;
+}
+
+.stTextInput label,
+.stTextArea label,
+.stNumberInput label,
+.stSelectbox label,
+.stDateInput label,
+.stSlider label {
+    color: #303134 !important;
+}
+
+
+/* =====================================================
+   SELECT BOX
+===================================================== */
+
+div[data-baseweb="select"] {
+    background-color: #ffffff !important;
+}
+
+div[data-baseweb="select"] * {
+    color: #202124 !important;
+}
+
+
+/* =====================================================
+   DATE INPUT
+===================================================== */
+
+.stDateInput input {
+    background-color: #ffffff !important;
+    color: #202124 !important;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .stButton > button {
+    background-color: #333538 !important;
+    color: #ffffff !important;
+    border: 1px solid #333538 !important;
     border-radius: 7px;
-    border: 1px solid #555555;
-    background-color: #333333;
-    color: white;
+    padding: 8px 18px;
+    font-weight: 500;
 }
 
 .stButton > button:hover {
-    background-color: #555555;
-    color: white;
+    background-color: #55585c !important;
+    color: #ffffff !important;
 }
 
-/* Inputs */
 
-input, textarea {
-    border-radius: 6px !important;
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+div[data-testid="stProgress"] {
+    background-color: #d9dadd;
 }
-
-/* Progress */
 
 div[data-testid="stProgress"] > div > div {
-    background-color: #555555;
+    background-color: #4b4e52;
 }
 
-/* Containers */
 
-div[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: white;
-    border-radius: 10px;
+/* =====================================================
+   TABS / RADIO BUTTONS
+===================================================== */
+
+.stRadio label {
+    color: #ffffff !important;
 }
 
-/* Remove Streamlit menu */
+
+/* =====================================================
+   EXPANDERS
+===================================================== */
+
+.streamlit-expanderHeader {
+    background-color: #ffffff !important;
+    color: #202124 !important;
+}
+
+
+/* =====================================================
+   INFO / SUCCESS / WARNING
+===================================================== */
+
+div[data-testid="stAlert"] {
+    color: #202124 !important;
+}
+
+
+/* =====================================================
+   TABLES
+===================================================== */
+
+.stDataFrame {
+    background-color: #ffffff;
+}
+
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+a {
+    color: #333333 !important;
+}
+
+
+/* =====================================================
+   HIDE STREAMLIT DEFAULT ELEMENTS
+===================================================== */
 
 #MainMenu {
     visibility: hidden;
@@ -132,8 +253,6 @@ footer {
 
 </style>
 """, unsafe_allow_html=True)
-
-
 # =========================================================
 # SIDEBAR
 # =========================================================
