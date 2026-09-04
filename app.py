@@ -22,263 +22,6 @@ st.set_page_config(
     layout="wide"
 )
 
-
-# =========================================================
-# CUSTOM DESIGN
-# =========================================================
-st.markdown("""
-<style>
-.stApp {color: White}
-
-/* =====================================================
-   MAIN APPLICATION
-===================================================== */
-
-[data-testid="stAppViewContainer"] {
-    background-color: #f4f4f5 !important;
-}
-
-[data-testid="stAppViewContainer"] > section {
-    background-color: #f4f4f5 !important;
-}
-
-.main {
-    background-color: #f4f4f5 !important;
-}
-
-
-/* =====================================================
-   ALL MAIN TEXT
-===================================================== */
-
-[data-testid="stAppViewContainer"] h1,
-[data-testid="stAppViewContainer"] h2,
-[data-testid="stAppViewContainer"] h3,
-[data-testid="stAppViewContainer"] h4,
-[data-testid="stAppViewContainer"] h5,
-[data-testid="stAppViewContainer"] h6 {
-    color: #1f2933 !important;
-}
-
-[data-testid="stAppViewContainer"] p {
-    color: #30343b !important;
-}
-
-[data-testid="stAppViewContainer"] label {
-    color: #30343b !important;
-}
-
-[data-testid="stAppViewContainer"] span {
-    color: inherit;
-}
-
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-[data-testid="stSidebar"] {
-    background: linear-gradient(
-        180deg,
-        #202124 0%,
-        #36383b 50%,
-        #686b70 100%
-    ) !important;
-}
-
-[data-testid="stSidebar"] > div {
-    background: transparent !important;
-}
-
-[data-testid="stSidebar"] h1,
-[data-testid="stSidebar"] h2,
-[data-testid="stSidebar"] h3,
-[data-testid="stSidebar"] p,
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] span {
-    color: #ffffff !important;
-}
-
-
-/* =====================================================
-   SIDEBAR SELECTBOX
-===================================================== */
-
-[data-testid="stSidebar"] div[data-baseweb="select"] {
-    background-color: #111318 !important;
-    border-radius: 8px !important;
-}
-
-[data-testid="stSidebar"] div[data-baseweb="select"] * {
-    color: #ffffff !important;
-}
-
-
-/* =====================================================
-   METRIC CARDS
-===================================================== */
-
-[data-testid="stMetric"] {
-    background-color: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-    border-radius: 12px !important;
-    padding: 20px !important;
-}
-
-[data-testid="stMetric"] label {
-    color: #555b64 !important;
-}
-
-[data-testid="stMetricValue"] {
-    color: #111827 !important;
-}
-
-[data-testid="stMetricDelta"] {
-    color: #374151 !important;
-}
-
-
-/* =====================================================
-   OBJECTIVE CARDS
-===================================================== */
-
-[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-    border-radius: 12px !important;
-}
-
-
-/* =====================================================
-   INPUTS
-===================================================== */
-
-[data-testid="stTextInput"] input,
-[data-testid="stTextArea"] textarea,
-[data-testid="stNumberInput"] input,
-[data-testid="stDateInput"] input {
-    background-color: #ffffff !important;
-    color: #111827 !important;
-    border: 1px solid #9ca3af !important;
-}
-
-
-/* =====================================================
-   SELECT BOXES
-===================================================== */
-
-div[data-baseweb="select"] {
-    background-color: #ffffff !important;
-}
-
-div[data-baseweb="select"] > div {
-    background-color: #ffffff !important;
-    color: #111827 !important;
-}
-
-div[data-baseweb="select"] span {
-    color: #111827 !important;
-}
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.stButton > button {
-    background-color: #33363a !important;
-    color: #ffffff !important;
-    border: 1px solid #33363a !important;
-    border-radius: 7px !important;
-    font-weight: 500 !important;
-}
-
-.stButton > button:hover {
-    background-color: #50545a !important;
-    color: #ffffff !important;
-}
-
-
-/* =====================================================
-   DELETE BUTTON
-===================================================== */
-
-.delete-button button {
-    background-color: #7f1d1d !important;
-    border-color: #7f1d1d !important;
-    color: #ffffff !important;
-}
-
-
-/* =====================================================
-   PROGRESS BAR
-===================================================== */
-
-[data-testid="stProgress"] > div {
-    background-color: #d1d5db !important;
-}
-
-[data-testid="stProgress"] > div > div {
-    background-color: #4b5563 !important;
-}
-
-
-/* =====================================================
-   EXPANDERS
-===================================================== */
-
-[data-testid="stExpander"] {
-    background-color: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-}
-
-[data-testid="stExpander"] summary {
-    color: #111827 !important;
-}
-
-
-/* =====================================================
-   ALERTS
-===================================================== */
-
-[data-testid="stAlert"] {
-    color: #1f2937 !important;
-}
-
-
-/* =====================================================
-   RADIO BUTTONS IN MAIN AREA
-===================================================== */
-
-[data-testid="stAppViewContainer"] [role="radiogroup"] label {
-    color: #30343b !important;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-[data-testid="stHeader"] {
-    background-color: #f4f4f5 !important;
-}
-
-
-/* =====================================================
-   HIDE DEFAULT MENU / FOOTER
-===================================================== */
-
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 # =========================================================
 # SIDEBAR
 # =========================================================
@@ -1036,3 +779,293 @@ elif page == "Progress Updates":
                         f"Next step: "
                         f"{item['next_step']}"
                     )
+# =========================================================
+# FINAL APPLICATION STYLING
+# =========================================================
+
+st.markdown("""
+<style>
+
+/* =====================================================
+   MAIN PAGE - FORCE DARK TEXT
+===================================================== */
+
+section.main {
+    background-color: #f3f4f6 !important;
+}
+
+section.main * {
+    color: #1f2937 !important;
+}
+
+
+/* =====================================================
+   HEADINGS
+===================================================== */
+
+section.main h1 {
+    color: #111827 !important;
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+}
+
+section.main h2 {
+    color: #111827 !important;
+    font-weight: 700 !important;
+}
+
+section.main h3 {
+    color: #111827 !important;
+    font-weight: 600 !important;
+}
+
+section.main h4 {
+    color: #111827 !important;
+    font-weight: 600 !important;
+}
+
+
+/* =====================================================
+   NORMAL TEXT
+===================================================== */
+
+section.main p {
+    color: #374151 !important;
+}
+
+section.main label {
+    color: #374151 !important;
+}
+
+section.main span {
+    color: #374151 !important;
+}
+
+section.main div {
+    color: #374151 !important;
+}
+
+
+/* =====================================================
+   METRICS
+===================================================== */
+
+section.main [data-testid="stMetric"] {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+}
+
+section.main [data-testid="stMetric"] * {
+    color: #111827 !important;
+}
+
+section.main [data-testid="stMetricLabel"] {
+    color: #6b7280 !important;
+}
+
+section.main [data-testid="stMetricValue"] {
+    color: #111827 !important;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+section.main [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 12px !important;
+}
+
+section.main [data-testid="stVerticalBlockBorderWrapper"] * {
+    color: #1f2937 !important;
+}
+
+
+/* =====================================================
+   TEXT INPUTS
+===================================================== */
+
+section.main input {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #9ca3af !important;
+}
+
+section.main textarea {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #9ca3af !important;
+}
+
+section.main input::placeholder,
+section.main textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+
+/* =====================================================
+   SELECT BOX
+===================================================== */
+
+section.main [data-baseweb="select"] {
+    background-color: #ffffff !important;
+}
+
+section.main [data-baseweb="select"] * {
+    color: #111827 !important;
+}
+
+
+/* =====================================================
+   DATE INPUT
+===================================================== */
+
+section.main [data-testid="stDateInput"] input {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+}
+
+
+/* =====================================================
+   SLIDERS
+===================================================== */
+
+section.main [data-testid="stSlider"] * {
+    color: #374151 !important;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+section.main .stButton button {
+    background-color: #34373b !important;
+    color: #ffffff !important;
+    border: 1px solid #34373b !important;
+}
+
+section.main .stButton button * {
+    color: #ffffff !important;
+}
+
+section.main .stButton button:hover {
+    background-color: #4b4f54 !important;
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+section.main [data-testid="stProgress"] {
+    background-color: #d1d5db !important;
+}
+
+section.main [data-testid="stProgress"] > div {
+    background-color: #d1d5db !important;
+}
+
+section.main [data-testid="stProgress"] > div > div {
+    background-color: #4b5563 !important;
+}
+
+
+/* =====================================================
+   EXPANDERS
+===================================================== */
+
+section.main [data-testid="stExpander"] {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+}
+
+section.main [data-testid="stExpander"] * {
+    color: #1f2937 !important;
+}
+
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
+section.main [data-testid="stAlert"] {
+    color: #1f2937 !important;
+}
+
+section.main [data-testid="stAlert"] * {
+    color: #1f2937 !important;
+}
+
+
+/* =====================================================
+   SIDEBAR
+   Keep sidebar white text
+===================================================== */
+
+section[data-testid="stSidebar"] {
+    background: linear-gradient(
+        180deg,
+        #202124 0%,
+        #3b3d40 50%,
+        #707378 100%
+    ) !important;
+}
+
+section[data-testid="stSidebar"] * {
+    color: #ffffff !important;
+}
+
+
+/* Sidebar select box */
+
+section[data-testid="stSidebar"] [data-baseweb="select"] {
+    background-color: #111318 !important;
+    border-radius: 8px !important;
+}
+
+section[data-testid="stSidebar"] [data-baseweb="select"] * {
+    color: #ffffff !important;
+}
+
+
+/* =====================================================
+   SIDEBAR BUTTONS / RADIO
+===================================================== */
+
+section[data-testid="stSidebar"] button {
+    color: #ffffff !important;
+}
+
+section[data-testid="stSidebar"] label {
+    color: #ffffff !important;
+}
+
+
+/* =====================================================
+   STREAMLIT HEADER
+===================================================== */
+
+header[data-testid="stHeader"] {
+    background-color: #f3f4f6 !important;
+}
+
+
+/* =====================================================
+   REMOVE STREAMLIT FOOTER
+===================================================== */
+
+footer {
+    visibility: hidden;
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+
+</style>
+""", unsafe_allow_html=True)
