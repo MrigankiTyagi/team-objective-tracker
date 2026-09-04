@@ -5,6 +5,8 @@ from database import (
     get_teams,
     get_objectives,
     create_objective,
+    edit_objective,
+    delete_objective,
     update_objective,
     create_meeting,
     get_meetings,
